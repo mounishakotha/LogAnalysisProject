@@ -116,7 +116,7 @@ In python file we need to write views and queries for the given questions.The vi
 
          2016-07-17 - 2.2627 %
 
-
+* To complete this project I have taken support of my Mentor and some Github references
 
 
 
