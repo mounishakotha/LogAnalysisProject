@@ -90,6 +90,32 @@ In python file we need to write views and queries for the given questions.The vi
 
 # Output:
 
+ opened database
+
+1) What are the most popular three articles of all time?
+
+        Candidate is jerk, alleges rival-338647views
+
+        Bears love berries, alleges bear-253801views
+
+        Bad things gone, say good people-170098views
+
+
+ 2) Who are the most popular article authors of all time?
+
+        Ursula La Multa-507594
+
+        Rudolf von Treppenwitz-423457
+
+        Anonymous Contributor-170098
+
+        Markoff Chaney-84557
+
+
+ 3) On which days did more than 1% of requests lead to errors?
+
+         2016-07-17 - 2.2627 %
+
 
 
 
