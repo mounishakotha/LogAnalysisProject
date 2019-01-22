@@ -12,6 +12,7 @@ def databaseconnection():
     except Exception:
             print("Unable to connect to the database")
 
+
 # creating first query
 def query1(cursor):
     # first question view
