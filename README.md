@@ -49,8 +49,7 @@ After installation of softwares we need to create roles in database as follows:
 ```
 
 After creation, we need to load database as 
-```  psql -d news -f newsdata.psql 
-```
+``` psql -d news -f newsdata.psql ```
 
 # Questions & Answers #
 1.What are the most popular three articles of all time?
