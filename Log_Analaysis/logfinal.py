@@ -14,11 +14,13 @@ def databaseconnection():
 
 # creating first query
 def query1(cursor):
+    # first question view
     q = """create view view_article as SELECT articles.title,count(*)
         from articles inner join log on log.path like concat
         ('/article/%', articles.slug) group by articles.title
         order by count(*) desc limit 3;"""
     # cursor[0].execute(q)
+    # first query execution
     q1 = ("select * from view_article;")
     cursor[0].execute(q1)
     cursor[1].commit()
@@ -30,13 +32,16 @@ def query1(cursor):
     return
 
 
+# creating second query
 def query2(cursor):
+    # second question view
     q2 = """create view view_author as select authors.name,count(*),
             articles.author from articles inner join log on log.path like
             concat ( '/article/%', articles.slug) inner join authors on
             authors.id = articles.author group by authors.name,
             articles.author order by count(*) desc;"""
     # cursor[0].execute(q2)
+    # second query execution
     qm = ("select * from view_author;")
     cursor[0].execute(qm)
     cursor[1].commit()
@@ -47,12 +52,15 @@ def query2(cursor):
     return
 
 
+# third query
 def query3(cursor):
+    # third question view
     q3 = """create view view_error as  select date(time),
             round(100.0*sum(case log.status when '404 NOT FOUND' then 1 else 0
             end)/count(log.status) , 4) as error from log group by
             date(time) """
     # cursor[0].execute(q3)
+    # third query execution
     qe = ("select date,error from view_error where error > 1.0")
     cursor[0].execute(qe)
     cursor[1].commit()
