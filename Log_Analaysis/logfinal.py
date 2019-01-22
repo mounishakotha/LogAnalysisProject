@@ -5,7 +5,7 @@ import psycopg2
 # establishing database connection
 def databaseconnection():
     try:
-        connection = psycopg2.connect("dbname = news")
+        connection = psycopg2.connect("dbname=news")
         cursor = connection.cursor()
         print("\n opened database \n")
         return cursor, connection
@@ -19,16 +19,16 @@ def query1(cursor):
     q = """create view view_article as SELECT articles.title,count(*)
         from articles inner join log on log.path like concat
         ('/article/%', articles.slug) group by articles.title
-        order by count(*) desc limit 3;"""
+        """
     # cursor[0].execute(q)
     # first query execution
-    q1 = ("select * from view_article;")
+    q1 = ("select * from view_article order by count desc limit 3;")
     cursor[0].execute(q1)
     cursor[1].commit()
     r = cursor[0].fetchall()
     print("1) What are the most popular three articles of all time?\n")
     for result in r:
-        print("\t" + str(result[0]) + "-" + str(result[1]) + "views" +
+        print("\t" + str(result[0]) + " - " + str(result[1]) + " views." +
               "\n")
     return
 
@@ -40,7 +40,7 @@ def query2(cursor):
             articles.author from articles inner join log on log.path like
             concat ( '/article/%', articles.slug) inner join authors on
             authors.id = articles.author group by authors.name,
-            articles.author order by count(*) desc;"""
+            articles.author order by count(*) desc"""
     # cursor[0].execute(q2)
     # second query execution
     qm = ("select * from view_author;")
@@ -49,7 +49,8 @@ def query2(cursor):
     r = cursor[0].fetchall()
     print("\n 2) Who are the most popular article authors of all time?\n")
     for result in r:
-        print("\t" + str(result[0]) + "-" + str(result[1]) + "\n")
+        print("\t" + str(result[0]) + " - " + str(result[1]) +
+              " articles." + "\n")
     return
 
 
@@ -71,6 +72,7 @@ def query3(cursor):
         print(" \t " + str(result[0]) + " - " + str(result[1]) + " % " +
               " \n ")
     return
+
 
 if __name__ == "__main__":
     c = databaseconnection()
