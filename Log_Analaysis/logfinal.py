@@ -2,6 +2,7 @@
 import psycopg2
 
 
+# establishing database connection
 def databaseconnection():
     try:
         connection = psycopg2.connect("dbname = news")
@@ -11,7 +12,7 @@ def databaseconnection():
     except Exception:
             print("Unable to connect to the database")
 
-
+# creating first query
 def query1(cursor):
     q = """create view view_article as SELECT articles.title,count(*)
         from articles inner join log on log.path like concat
